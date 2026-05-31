@@ -1,0 +1,86 @@
+[
+  {
+    "id": "economia",
+    "tema": "Economia",
+    "statement": "O governo deve controlar menos a economia e dar mais liberdade ao mercado.",
+    "labelCurto": "Mais liberdade ao mercado",
+    "emoji": "💹"
+  },
+  {
+    "id": "rendaSocial",
+    "tema": "Renda & Social",
+    "statement": "Programas de transferência de renda, como o Bolsa Família, devem ser ampliados.",
+    "labelCurto": "Ampliar transferência de renda",
+    "emoji": "🤝"
+  },
+  {
+    "id": "amazonia",
+    "tema": "Meio Ambiente",
+    "statement": "O desmatamento da Amazônia deve ir a zero, mesmo que isso limite o agronegócio.",
+    "labelCurto": "Desmatamento zero",
+    "emoji": "🌳"
+  },
+  {
+    "id": "armas",
+    "tema": "Armas",
+    "statement": "O acesso de cidadãos comuns a armas de fogo deve ser facilitado.",
+    "labelCurto": "Facilitar acesso a armas",
+    "emoji": "🔫"
+  },
+  {
+    "id": "corrupcao",
+    "tema": "Corrupção",
+    "statement": "É preciso endurecer penas e dar mais autonomia aos órgãos de combate à corrupção.",
+    "labelCurto": "Mais rigor contra corrupção",
+    "emoji": "🧹"
+  },
+  {
+    "id": "sus",
+    "tema": "Saúde",
+    "statement": "O SUS deve ser ampliado e receber mais investimento público.",
+    "labelCurto": "Ampliar o SUS",
+    "emoji": "🏥"
+  },
+  {
+    "id": "educacao",
+    "tema": "Educação",
+    "statement": "O ensino superior público deve continuar gratuito e ser expandido.",
+    "labelCurto": "Universidade pública gratuita",
+    "emoji": "🎓"
+  },
+  {
+    "id": "democracia",
+    "tema": "Democracia",
+    "statement": "As urnas eletrônicas brasileiras são seguras e confiáveis.",
+    "labelCurto": "Confiança nas urnas",
+    "emoji": "🗳️"
+  },
+  {
+    "id": "lgbtqia",
+    "tema": "Direitos LGBTQIA+",
+    "statement": "O Estado deve garantir e ampliar os direitos da população LGBTQIA+.",
+    "labelCurto": "Ampliar direitos LGBTQIA+",
+    "emoji": "🏳️‍🌈"
+  },
+  {
+    "id": "drogas",
+    "tema": "Drogas",
+    "statement": "O porte de maconha para uso pessoal deve ser descriminalizado.",
+    "labelCurto": "Descriminalizar a maconha",
+    "emoji": "🌿"
+  },
+  {
+    "id": "impostos",
+    "tema": "Impostos",
+    "statement": "Grandes fortunas devem pagar mais impostos para financiar serviços públicos.",
+    "labelCurto": "Mais imposto sobre fortunas",
+    "emoji": "💰"
+  },
+  {
+    "id": "estatais",
+    "tema": "Estatais",
+    "statement": "Empresas estatais como a Petrobras devem ser privatizadas.",
+    "labelCurto": "Privatizar estatais",
+    "emoji": "🏭"
+  }
+]

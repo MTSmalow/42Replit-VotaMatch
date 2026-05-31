@@ -1,0 +1,57 @@
+# Fase 0 — Scaffold + Design System
+
+**Objetivo:** projeto rodando, design tokens configurados, 4 rotas vazias.
+**Pré-requisito:** ter rodado o `data-prep` (local) e colocado `candidates.json` + `ideas.json`
+em `src/data/`. **Referências:** `SPEC.md` §3/§5, `DESIGN.md`.
+
+---
+
+```
+Crie um app web mobile-first chamado "VotaMatch SP".
+
+STACK: use a SUA stack nativa de web app (a que você builda/roda/deploya melhor) —
+React + TypeScript + Tailwind no frontend (Vite). Você decide os detalhes, MAS respeite
+estas restrições:
+- É um app FRONTEND-ONLY na prática: SEM banco de dados, SEM auth, SEM backend de dados.
+  NÃO adicione Drizzle/Neon/Postgres. Se sua template trouxer um servidor Express, deixe-o
+  só como host estático — não crie rotas de dados/DB.
+- Os dados (candidatos e ideias) são JSON ESTÁTICO embutido no frontend (src/data/*.json,
+  fornecidos por nós) e TODO o matching roda no navegador.
+- Estado do usuário com zustand + persist (localStorage). Rotas com um router client-side.
+- PWA instalável/offline (ex.: vite-plugin-pwa). Swipe com react-tinder-card (ou equivalente
+  com gesto + fallback de botão).
+- Se sua template incluir um kit de componentes (ex.: shadcn/ui), tudo bem, MAS o nosso
+  DESIGN SYSTEM abaixo tem prioridade sobre qualquer tema padrão.
+
+DESIGN SYSTEM (obrigatório) — adicione em theme.extend do tailwind.config (ou equivalente):
+  colors:
+    bg '#0E1117', surface '#171B26', elevated '#1F2433', border '#2A3140',
+    ink '#F5F7FA', 'ink-muted' '#9AA4B2', 'ink-faint' '#5B6472',
+    brand '#7C5CFC', 'brand-from' '#6366F1', 'brand-to' '#A855F7',
+    agree '#22C55E', disagree '#FB3B5C', skip '#FBBF24'
+  fontFamily:
+    display ['"Space Grotesk"','sans-serif'], sans ['Inter','sans-serif'], mono ['"DM Mono"','monospace']
+  boxShadow: card '0 20px 60px -15px rgba(124,92,252,0.35)'
+  borderRadius: '3xl' '24px'
+No index.html, importe via Google Fonts: Space Grotesk (500,700), Inter (400,500,600),
+DM Mono (500). No CSS global: body usa "bg-bg text-ink font-sans"; layout raiz é um
+container "max-w-md mx-auto min-h-[100dvh]" respeitando safe-area-insets (notch).
+
+Estrutura de pastas:
+  src/components/  src/screens/  src/store/  src/lib/  src/data/  public/fotos/
+NÃO crie script de dados nem baixe nada do TSE: os arquivos src/data/candidates.json e
+src/data/ideas.json já são fornecidos (gerados fora, pelo data-prep). Apenas consuma-os.
+Se não existirem ainda, crie placeholders vazios ([]) só para o build não quebrar.
+
+Em src/lib/types.ts defina os tipos do SPEC §5: ThemeId, Stance (-1|0|1), IdeaCard, Cargo,
+Candidate (SEM campo "resultado" — estamos em out/2022, pré-votação), e o estado Session
+(answers, favorites por cargo, discarded, escolhaFinal).
+
+Em src/store/session.ts crie um store zustand persistido com: answers, favorites, discarded,
+escolhaFinal e ações (setAnswer, saveCandidate, discardCandidate, setEscolha, reset).
+
+Router com 4 rotas, cada uma uma tela placeholder mostrando só o título estilizado
+(font-display): "/" (Landing), "/ideias", "/cargos", "/cola".
+
+Rode e confirme que abre no preview em viewport de celular, fundo escuro, fontes carregadas.
+```

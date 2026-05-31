@@ -1,0 +1,52 @@
+# Fase 2 — Matching + Decks de Candidatos
+
+**Objetivo:** os 5 cargos, na ordem da urna, com decks rankeados; deputados filtrados.
+**Pré-requisito:** Fases 0–1 + `src/data/candidates.json` já no projeto (gerado pelo `data-prep`, local).
+**Referências:** `SPEC.md` §4/§6/§7, `DESIGN.md` §5 (Cabeçalho de cargo + CandidateCard).
+
+---
+
+```
+1) src/lib/matching.ts: implemente matchPct(u, s) do SPEC §6 — proximidade só sobre temas
+   respondidos, retorno 0..100. Função cor do match: ≥70 agree, 40–69 skip, <40 ink-faint.
+
+2) Tela /cargos: percorre os 5 cargos NA ORDEM DA URNA:
+   deputadoEstadual(5) → deputadoFederal(4) → senador(3) → governador(2) → presidente(2).
+
+   CABEÇALHO FIXO no topo (DESIGN.md §5 "Cabeçalho de cargo" — PRESERVAR exatamente):
+   - STEPPER de 5 nós ligados por linha (●━━━●━━━○━━━○━━━○): concluídos/atual bg-brand,
+     futuros bg-elevated; pode mostrar "2/5".
+   - TÍTULO do cargo atual (font-display, uppercase), ex. "DEPUTADO FEDERAL".
+   - FILTRO de partido: "⌗ filtrar partido ▾" → chips multiselect; siglas escolhidas viram
+     chips removíveis "[PT ✕]". SÓ para deputados; ocultar nas corridas pequenas.
+
+   Para o cargo atual, rankeia candidatos por matchPct desc.
+   - Deputados (estadual/federal): o filtro re-filtra e re-rankeia ANTES de cortar no TOP 30.
+   - Presidente/governador/senador: mostra todos, ordenados (sem filtro).
+
+3) Deck react-tinder-card por cargo. CandidateCard com FOTO FULL-BLEED + SCRIM (DESIGN.md §5):
+   - Carta relative rounded-3xl overflow-hidden shadow-card; a FOTO preenche tudo
+     (absolute inset-0 object-cover). Fallback sem foto: inset-0 com cor-hash da sigla +
+     iniciais grandes (cor decorativa, NÃO a oficial do partido).
+   - BARRA DE PARTIDO no topo (absolute): pílula bg-bg/70 backdrop-blur com ponto da cor-hash
+     da sigla, ex. "● PT" — legível sobre qualquer foto.
+   - SCRIM na base (absolute inset-x-0 bottom-0, bg-gradient-to-t from-bg via-bg/85 to-transparent)
+     contendo em coluna: NÚMERO (font-mono text-5xl, digit-spaced "1 3 4 5"); NOME (font-display
+     text-xl); OCUPAÇÃO · IDADE (text-sm ink-muted, ex. "Médica · 52 anos") — NÃO repetir o
+     cargo (já está no cabeçalho); sem ocupação, mostra só idade ou some a linha; 3 chips dos
+     temas mais alinhados (text-agree) + match% discreto (text-xs, cor por tier ≥70/40–69/<40)
+     + dica "↻ ver +".
+   - O overlay de arraste (verde/vermelho + selo) entra por cima de tudo.
+
+   FLIP (verso): tocar na foto vira a carta (flip 3D rotate-y-180). O verso é um painel
+   bg-surface (sem foto) com "ONDE SE POSICIONA (estimativa)": para cada tema com stance ≠ 0,
+   "✓ {labelCurto}" (stance +1, text-agree) ou "✗ {labelCurto}" (stance −1, text-disagree);
+   neutros ficam de fora; ~6 itens, mais alinhados primeiro. Abaixo: ocupação · idade · UF.
+   DISCLAIMER obrigatório no verso (text-[10px] ink-faint): "Posições estimadas pelo partido —
+   não são declarações oficiais do candidato." Tocar de novo / no ↻ volta à frente; swipe
+   funciona dos dois lados.
+
+4) Swipe/botão: → salvar (store.saveCandidate(cargo,id)), ← descartar
+   (store.discardCandidate). Ao terminar o cargo, peça para escolher 1 favorito como
+   escolha final (store.setEscolha(cargo,id)) e avance ao próximo cargo. Após presidente → /cola.
+```
