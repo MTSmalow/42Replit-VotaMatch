@@ -1,41 +1,52 @@
-# replit.md — contexto persistente para o Replit Agent
+# VotaMatch BR
 
-> Leia isto em TODAS as tarefas. Regras e contexto fixos do projeto. Detalhes completos em
-> `SPEC.md`, `docs/DESIGN.md`, `docs/data-pipeline.md`.
+Aplicativo que ajuda eleitores brasileiros a encontrar candidatos alinhados aos seus valores por meio de um quiz no estilo "swipe", calculando o percentual de proximidade com cada candidato para as Eleições 2026.
 
-## O que é
-**VotaMatch SP** — app mobile-first estilo Tinder para as **eleições 2022 em São Paulo**.
-O eleitor dá *swipe* em 12 ideias → recebe candidatos compatíveis nos 5 cargos → termina com
-uma **Cola da Urna** (números na ordem de votação) que pode salvar como imagem.
+## Run & Operate
 
-## Contexto fixo (não violar)
-- **Estamos "em" outubro de 2022, PRÉ-VOTAÇÃO.** Nada de resultados/eleitos. Sem campo de
-  "quem ganhou", sem spoilers.
-- **Só São Paulo** (presidente é nacional/BR; os outros 4 cargos são SP).
-- **Posições dos candidatos são ESTIMADAS por partido**, não oficiais. Exibir o aviso na
-  Landing, no verso da carta de candidato e na Cola. Nunca apresentar como fato.
+- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm run typecheck` — full typecheck across all packages
+- `pnpm run build` — typecheck + build all packages
+- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
+- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
+- Required env: `DATABASE_URL` — Postgres connection string
 
-## Restrições técnicas (não violar)
-- **Frontend-only.** SEM banco de dados, SEM auth, SEM backend de dados. NÃO adicionar
-  Drizzle/Neon/Postgres. Se houver Express na template, deixar só como host estático.
-- **Dados = JSON estático** em `src/data/candidates.json` e `src/data/ideas.json`, gerados
-  FORA do Replit (pasta `data-prep/`, roda local). **Não baixar nem processar dados do TSE
-  aqui.** Apenas consumir o JSON. Se faltar, criar placeholder `[]`.
-- **Matching roda 100% no navegador.** Estado do usuário em **zustand + persist
-  (localStorage)** → cada celular tem sua sessão isolada (multiusuário sem backend).
-- **Deploy = Static Deployment.** "App" = **PWA instalável** (Add to Home Screen), não build
-  de loja.
-- Stack: sua nativa (React + TS + Tailwind/Vite). Mobile-first, alvos ≥56px, 100dvh, safe-areas.
+## Stack
 
-## Design (resumo — completo em docs/DESIGN.md)
-- Dark. Cores: bg #0E1117, surface #171B26, elevated #1F2433, border #2A3140,
-  ink #F5F7FA / ink-muted #9AA4B2 / ink-faint #5B6472, brand #7C5CFC (gradiente
-  #6366F1→#A855F7), agree #22C55E, disagree #FB3B5C, skip #FBBF24.
-- Fontes: Space Grotesk (display), Inter (sans), DM Mono (números da urna).
-- **Apartidário:** cor de partido nunca como identidade visual (usar cor-hash decorativa).
-- O DESIGN SYSTEM tem prioridade sobre qualquer tema/kit padrão (shadcn etc.).
+- pnpm workspaces, Node.js 24, TypeScript 5.9
+- API: Express 5
+- DB: PostgreSQL + Drizzle ORM
+- Validation: Zod (`zod/v4`), `drizzle-zod`
+- API codegen: Orval (from OpenAPI spec)
+- Build: esbuild (CJS bundle)
 
-## Como construir
-- **Incremental.** Siga as fases em `docs/prompts/00..04` na ordem, UMA por vez.
-- Após cada fase funcionar no preview mobile, **salve um Checkpoint**; se quebrar, role de volta.
-- Seja específico; quando eu colar uma fase, implemente só aquela fase.
+## Where things live
+
+- `artifacts/pitch-deck/` — deck de apresentação (3 min) em pt-BR. Slides em `src/pages/slides/`, manifesto em `src/data/slides-manifest.json`
+- `artifacts/mobile/` — app mobile VotaMatch (Expo)
+- `artifacts/api-server/` — servidor de API (Express)
+- `artifacts/mockup-sandbox/` — canvas para previews de componentes
+
+## Architecture decisions
+
+- Pitch deck: paleta navy `#0F2740`, azul `#1A5276`, verde `#27AE60`, fundo claro `#F4F8FC`. Fontes Raleway (display 900) + Source Sans 3 (corpo)
+- Slides usam apenas unidades vw/vh, sem emoji e sem `.map()` (JSX estático) para compatibilidade com o editor visual e exportação
+- QR codes nos slides são SVG estáticos desenhados à mão (Capa e Call to Action)
+
+## Product
+
+VotaMatch BR é um app de orientação eleitoral. O eleitor responde a 12 afirmações sobre 5 temas (economia, renda, meio ambiente, segurança, democracia), concordando, discordando ou ficando neutro. Um algoritmo de proximidade gera um ranking de candidatos por cargo, ordenados pelo percentual de alinhamento. Inclui "cola de votação" para levar na hora de votar. Gratuito, sem cadastro e sem rastreamento de dados pessoais.
+
+O deck de 8 slides (Capa, O Problema, A Solução, Como Funciona, Funcionalidades, Impacto, Monetização, Call to Action) apresenta o produto para as Eleições 2026 em nível nacional.
+
+## User preferences
+
+_Populate as you build — explicit user instructions worth remembering across sessions._
+
+## Gotchas
+
+_Populate as you build — sharp edges, "always run X before Y" rules._
+
+## Pointers
+
+- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details

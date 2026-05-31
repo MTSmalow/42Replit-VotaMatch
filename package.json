@@ -1,31 +1,16 @@
 {
-  "name": "votamatch-sp",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5000",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
+    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
-  "dependencies": {
-    "@react-spring/web": "^9.7.5",
-    "html-to-image": "^1.11.11",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "react-tinder-card": "^1.6.4",
-    "zustand": "^5.0.0"
-  },
+  "private": true,
   "devDependencies": {
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.8",
-    "vite-plugin-pwa": "^0.20.5"
+    "prettier": "^3.8.3",
+    "typescript": "~5.9.3"
   }
 }

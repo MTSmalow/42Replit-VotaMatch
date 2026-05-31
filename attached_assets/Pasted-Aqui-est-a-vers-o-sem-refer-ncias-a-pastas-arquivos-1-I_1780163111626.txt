@@ -1,0 +1,168 @@
+Aqui está a versão sem referências a pastas/arquivos:
+
+1. Implementar `matchPct(u, s)` conforme SPEC §6:
+
+   * Calcula proximidade apenas sobre temas respondidos.
+   * Retorna valor de `0..100`.
+   * Cor do match:
+
+     * `≥ 70`: `agree`
+     * `40–69`: `skip`
+     * `< 40`: `ink-faint`
+
+2. Tela de cargos:
+
+   * Percorrer os 5 cargos na ordem da urna:
+
+     * deputadoEstadual (5)
+     * deputadoFederal (4)
+     * senador (3)
+     * governador (2)
+     * presidente (2)
+
+   Cabeçalho fixo no topo (DESIGN.md §5 — preservar exatamente):
+
+   * Stepper de 5 nós ligados por linha (`●━━━●━━━○━━━○━━━○`)
+
+     * concluídos/atual: `bg-brand`
+     * futuros: `bg-elevated`
+     * pode exibir `"2/5"`
+   * Título do cargo atual (`font-display`, uppercase), ex.: `"DEPUTADO FEDERAL"`
+   * Filtro de partido:
+
+     * `"⌗ filtrar partido ▾"`
+     * chips multiselect
+     * siglas selecionadas viram chips removíveis (`[PT ✕]`)
+     * disponível apenas para deputados
+     * ocultar nas corridas menores
+
+   Para o cargo atual:
+
+   * Ordenar candidatos por `matchPct` decrescente.
+   * Deputados (estadual/federal):
+
+     * aplicar filtro
+     * re-ranquear
+     * só então cortar para TOP 30
+   * Presidente, governador e senador:
+
+     * mostrar todos ordenados
+     * sem filtro
+
+3. Deck com `react-tinder-card` por cargo.
+
+   CandidateCard:
+
+   * Foto full-bleed com scrim (DESIGN.md §5)
+   * Carta:
+
+     * `relative`
+     * `rounded-3xl`
+     * `overflow-hidden`
+     * `shadow-card`
+   * Foto:
+
+     * `absolute inset-0`
+     * `object-cover`
+   * Fallback sem foto:
+
+     * fundo com cor-hash da sigla
+     * iniciais grandes
+     * cor apenas decorativa (não usar cor oficial do partido)
+
+   Barra de partido:
+
+   * posicionamento absoluto no topo
+   * pílula `bg-bg/70 backdrop-blur`
+   * ponto usando cor-hash da sigla
+   * exemplo: `● PT`
+   * deve permanecer legível sobre qualquer foto
+
+   Scrim inferior:
+
+   * `absolute inset-x-0 bottom-0`
+   * `bg-gradient-to-t from-bg via-bg/85 to-transparent`
+
+   Conteúdo:
+
+   * Número:
+
+     * `font-mono`
+     * `text-5xl`
+     * espaçamento entre dígitos (`1 3 4 5`)
+   * Nome:
+
+     * `font-display`
+     * `text-xl`
+   * Ocupação · idade:
+
+     * `text-sm ink-muted`
+     * ex.: `Médica · 52 anos`
+     * não repetir o cargo
+     * sem ocupação: mostrar apenas idade
+     * sem ambos: ocultar linha
+   * 3 chips dos temas mais alinhados (`text-agree`)
+   * Match % discreto:
+
+     * `text-xs`
+     * cor conforme tier (`≥70`, `40–69`, `<40`)
+   * Dica:
+
+     * `↻ ver +`
+
+   Overlay de arraste:
+
+   * verde/vermelho + selo
+   * acima de todos os elementos
+
+   Flip (verso):
+
+   * toque na foto faz flip 3D (`rotate-y-180`)
+   * verso:
+
+     * painel `bg-surface`
+     * sem foto
+
+   Seção:
+
+   * Título: `"ONDE SE POSICIONA (estimativa)"`
+   * Para cada tema com `stance ≠ 0`:
+
+     * `✓ {labelCurto}` para `+1` (`text-agree`)
+     * `✗ {labelCurto}` para `−1` (`text-disagree`)
+   * Omitir neutros
+   * Aproximadamente 6 itens
+   * Mais alinhados primeiro
+
+   Rodapé do verso:
+
+   * ocupação · idade · UF
+
+   Disclaimer obrigatório:
+
+   * `text-[10px] ink-faint`
+   * `"Posições estimadas pelo partido — não são declarações oficiais do candidato."`
+
+   Interação:
+
+   * tocar novamente ou em `↻` retorna à frente
+   * swipe funciona nos dois lados
+
+4. Swipe e ações:
+
+   * Swipe direita (`→`):
+
+     * `saveCandidate(cargo, id)`
+   * Swipe esquerda (`←`):
+
+     * `discardCandidate(cargo, id)`
+
+   Ao concluir cada cargo:
+
+   * solicitar escolha de 1 favorito
+   * registrar via `setEscolha(cargo, id)`
+   * avançar para o próximo cargo
+
+   Após concluir presidente:
+
+   * navegar para `/cola`।

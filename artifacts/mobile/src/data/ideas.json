@@ -1,0 +1,110 @@
+[
+  {
+    "id": "economia",
+    "tema": "Economia",
+    "statement": "O governo deve controlar menos a economia e dar mais liberdade ao mercado.",
+    "labelCurto": "Mais liberdade ao mercado",
+    "labelCurtoNeg": "Mais controle do Estado na economia",
+    "emoji": "💹",
+    "foto": "/fotos/economia.jpg"
+  },
+  {
+    "id": "rendaSocial",
+    "tema": "Renda & Social",
+    "statement": "Programas de transferência de renda, como o Bolsa Família, devem ser ampliados.",
+    "labelCurto": "Ampliar transferência de renda",
+    "labelCurtoNeg": "Reduzir transferência de renda",
+    "emoji": "🤝",
+    "foto": "/fotos/rendaSocial.jpg"
+  },
+  {
+    "id": "amazonia",
+    "tema": "Meio Ambiente",
+    "statement": "O desmatamento da Amazônia deve ir a zero, mesmo que isso limite o agronegócio.",
+    "labelCurto": "Desmatamento zero",
+    "labelCurtoNeg": "Flexibilizar regras ambientais",
+    "emoji": "🌳",
+    "foto": "/fotos/amazonia.jpg"
+  },
+  {
+    "id": "armas",
+    "tema": "Armas",
+    "statement": "O acesso de cidadãos comuns a armas de fogo deve ser facilitado.",
+    "labelCurto": "Facilitar acesso a armas",
+    "labelCurtoNeg": "Restringir acesso a armas",
+    "emoji": "🔫",
+    "foto": "/fotos/armas.jpg"
+  },
+  {
+    "id": "corrupcao",
+    "tema": "Corrupção",
+    "statement": "É preciso endurecer penas e dar mais autonomia aos órgãos de combate à corrupção.",
+    "labelCurto": "Mais rigor contra corrupção",
+    "labelCurtoNeg": "Menos rigor no combate à corrupção",
+    "emoji": "🧹",
+    "foto": "/fotos/corrupcao.jpg"
+  },
+  {
+    "id": "sus",
+    "tema": "Saúde",
+    "statement": "O SUS deve ser ampliado e receber mais investimento público.",
+    "labelCurto": "Ampliar o SUS",
+    "labelCurtoNeg": "Priorizar a saúde privada",
+    "emoji": "🏥",
+    "foto": "/fotos/sus.jpg"
+  },
+  {
+    "id": "educacao",
+    "tema": "Educação",
+    "statement": "O ensino superior público deve continuar gratuito e ser expandido.",
+    "labelCurto": "Universidade pública gratuita",
+    "labelCurtoNeg": "Cobrar pelo ensino superior público",
+    "emoji": "🎓",
+    "foto": "/fotos/educacao.jpg"
+  },
+  {
+    "id": "democracia",
+    "tema": "Democracia",
+    "statement": "As urnas eletrônicas brasileiras são seguras e confiáveis.",
+    "labelCurto": "Confiança nas urnas",
+    "labelCurtoNeg": "Desconfiança nas urnas eletrônicas",
+    "emoji": "🗳️",
+    "foto": "/fotos/democracia.jpg"
+  },
+  {
+    "id": "lgbtqia",
+    "tema": "Direitos LGBTQIA+",
+    "statement": "O Estado deve garantir e ampliar os direitos da população LGBTQIA+.",
+    "labelCurto": "Ampliar direitos LGBTQIA+",
+    "labelCurtoNeg": "Restringir a pauta LGBTQIA+",
+    "emoji": "🏳️‍🌈",
+    "foto": "/fotos/lgbtqia.jpg"
+  },
+  {
+    "id": "drogas",
+    "tema": "Drogas",
+    "statement": "O porte de maconha para uso pessoal deve ser descriminalizado.",
+    "labelCurto": "Descriminalizar a maconha",
+    "labelCurtoNeg": "Manter a maconha criminalizada",
+    "emoji": "🌿",
+    "foto": "/fotos/drogas.jpg"
+  },
+  {
+    "id": "impostos",
+    "tema": "Impostos",
+    "statement": "Grandes fortunas devem pagar mais impostos para financiar serviços públicos.",
+    "labelCurto": "Mais imposto sobre fortunas",
+    "labelCurtoNeg": "Menos imposto sobre grandes fortunas",
+    "emoji": "💰",
+    "foto": "/fotos/impostos.jpg"
+  },
+  {
+    "id": "estatais",
+    "tema": "Estatais",
+    "statement": "Empresas estatais como a Petrobras devem ser privatizadas.",
+    "labelCurto": "Privatizar estatais",
+    "labelCurtoNeg": "Manter empresas estatais públicas",
+    "emoji": "🏭",
+    "foto": "/fotos/estatais.jpg"
+  }
+]

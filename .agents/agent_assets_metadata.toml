@@ -1,0 +1,37 @@
+uploads = []
+
+[[generated]]
+id = "e1RtZXQSYj-rULqST9P60"
+uri = "file://artifacts/mobile/assets/images/icon.png"
+type = "image"
+title = "votamatch-sp-icon"
+
+[[generated]]
+id = "8n07-x4yQp5TPX26BieZ1"
+uri = "file://artifacts/mobile/assets/candidates/professora-bebel.png"
+type = "image"
+title = "professora bebel portrait"
+
+[[generated]]
+id = "CDQNcO-0e4m4FOWSXnwhH"
+uri = "file://artifacts/mobile/assets/candidates/gil-diniz.png"
+type = "image"
+title = "gil diniz portrait"
+
+[[generated]]
+id = "pDFggIxh6FHYb0SX8wCDs"
+uri = "file://artifacts/mobile/assets/candidates/vinicius-poit.png"
+type = "image"
+title = "vinicius poit portrait"
+
+[[outputs]]
+id = "4AQky2yleo5GBAgaBYnu_"
+uri = "file://.local/outputs/Elei--o-Match.pdf"
+type = "pdf"
+title = "Eleição Match.pdf"
+
+[[outputs]]
+id = "k59SAnGIwQO9xrhM8xzej"
+uri = "file://.local/outputs/Elei--o-Match.pptx"
+type = "slides"
+title = "Eleição Match.pptx"
